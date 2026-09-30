@@ -1,0 +1,24 @@
+{
+    "name": "considbrs-webdev/eslov-event-review",
+    "description": "WordPress event submission review and organizer account restrictions for Modularity Frontend Form and Event Manager.",
+    "type": "wordpress-plugin",
+    "license": "MIT",
+    "keywords": [
+        "wordpress",
+        "modularity",
+        "events",
+        "moderation"
+    ],
+    "homepage": "https://github.com/Considbrs-Webdev/eslov-event-review",
+    "support": {
+        "issues": "https://github.com/Considbrs-Webdev/eslov-event-review/issues",
+        "source": "https://github.com/Considbrs-Webdev/eslov-event-review"
+    },
+    "require": {
+        "php": ">=8.0",
+        "composer/installers": "^2.0"
+    },
+    "extra": {
+        "installer-name": "eslov-event-review"
+    }
+}

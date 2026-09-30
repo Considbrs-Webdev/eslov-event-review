@@ -4,6 +4,32 @@ A site-specific WordPress plugin for reviewing submitted events before publicati
 
 The plugin integrates with **Modularity Frontend Form** and **Event Manager**. It keeps the local moderation rules in a separate plugin without requiring changes to either dependency.
 
+## Composer and Packagist
+
+Package name: `considbrs-webdev/eslov-event-review`. License: MIT. Requires PHP 8.0 or later.
+
+Once the repository is registered on Packagist and a `dev` branch containing this package metadata has been pushed, install the test version from the consuming WordPress project's root:
+
+```sh
+composer config allow-plugins.composer/installers true
+composer require considbrs-webdev/eslov-event-review:dev-dev
+```
+
+Composer names the Git branch `dev` as `dev-dev`. No `version` field or release tag is needed for this test version. Composer discovers versions from Git branches and tags; the WordPress plugin header version is separate.
+
+The package uses `wordpress-plugin` and `composer/installers`, with the install directory name `eslov-event-review`. Keep the consuming project's existing `extra.installer-paths` configuration for its WordPress plugin directory. WordPress loads the plugin entry point; it is deliberately not included in Composer's autoloader.
+
+Composer installs this plugin and its installer, but does not provision WordPress, ACF, Modularity Frontend Form, or Event Manager. Those integrations must already be installed as described below.
+
+Before publishing:
+
+1. Run `composer validate --strict`.
+2. Commit and push the package files to the public repository, including the `dev` branch for `dev-dev` testing. Ensure the default branch also contains `composer.json` for initial discovery.
+3. Submit `https://github.com/Considbrs-Webdev/eslov-event-review` on Packagist using an account permitted to publish under `considbrs-webdev`.
+4. Enable automatic updates and verify installation in a test WordPress project.
+
+For a later stable release, create a semantic version tag and keep the WordPress plugin header version in sync with that release.
+
 ## Problems it addresses
 
 - **Password protection is not an approval workflow.** A password-protected event can still have `publish` status and be picked up by integrations. Configure the form to save submissions as **Pending Review** so they await approval. This plugin supplies the review actions and removes the generated password.
@@ -33,23 +59,16 @@ If the handler is unavailable, approval is refused. If processing throws an erro
 
 ## Setup and scope
 
-The current implementation is intentionally specific to this installation:
+Settings are stored per WordPress site on **Settings → Frontend Form** (`mod-frontend-form-options`). The plugin supplies an ACF field group on the options page registered by Modularity Frontend Form.
 
-| Setting | Current value |
-| --- | --- |
-| Allowed site hostname | `event.eslov.local` |
-| Event post type | `event` |
-| Organizer taxonomy used by Event Manager | `organization` |
-| Restricted-account marker | `_eslov_event_review_blocked` |
-
-1. Use the existing WordPress installation with Modularity Frontend Form, Event Manager (`api-event-manager`), and their ACF/Modularity dependencies available.
-2. Activate **Eslöv Event Review** on `event.eslov.local` only. Network activation and activation on another hostname are rejected.
-3. In the frontend form's database handler settings, choose **Pending Review** as the saved post status.
+1. Install Modularity Frontend Form, Event Manager (`api-event-manager`), and their ACF/Modularity dependencies.
+2. Activate **Eslöv Event Review** separately on the site. Network activation is rejected; there is no hostname restriction.
+3. On **Settings → Frontend Form**, select one or more frontend form modules under **Formulär som kräver granskning** and save.
 4. Review incoming events in the WordPress event list.
 
-**The form controls the initial post status.** The plugin does not change form settings on activation or deactivation and does not force submissions to `pending`. If a form is configured to publish immediately, this plugin does not prevent that publication.
+No forms are selected on a new installation. An empty selection disables review behavior for new submissions. Only forms that save `event` posts are affected. New events from selected forms are forced to `pending` and have their generated password removed, even if the form itself is configured to publish. Later edits retain their existing status and password.
 
-Review buttons apply to all draft and pending `event` posts on the allowed site. Password removal during form saves and organizer-account restrictions are scoped to the configured frontend forms, identified through `mod_frontend_form_module_id`. These values are currently defined in code, not exposed as settings.
+Review buttons, approval/rejection, organizer-account creation restrictions, and frontend editing notice handling are scoped to events whose `mod_frontend_form_module_id` identifies a selected form. Other forms and manually created events are unaffected. Removing a form from the selection does not change existing events or remove restrictions from accounts already marked with `_eslov_event_review_blocked`.
 
 ## Organizer accounts and email
 
@@ -62,7 +81,7 @@ During Event Manager's organizer creation flow for an event submitted through th
 
 Existing accounts are not marked or downgraded by this flow. Mail outside the scoped creation action is unaffected, apart from the new-user notification filters for marked accounts.
 
-These are site-local restrictions, not a network-wide account suspension. They apply only where this plugin is loaded and its hostname check passes.
+These are site-local restrictions, not a network-wide account suspension. They apply only where this plugin is loaded is active on that site.
 
 ## Passwords and frontend editing
 
@@ -84,7 +103,7 @@ The plugin does not manage Typesense or External Content directly. After creatin
 
 ## Deactivation and recovery
 
-Deactivation removes the plugin's review actions and runtime restrictions. It leaves form settings, event statuses, organizer terms, and account data unchanged.
+Deactivation removes the plugin's settings field group, review actions, and runtime restrictions. It leaves the saved form selection, form settings, event statuses, organizer terms, and account data unchanged.
 
 - Rejected events can be restored from the WordPress Trash.
 - Accounts retain their subscriber role and restriction marker, but this plugin no longer enforces the login restrictions while inactive.
@@ -103,3 +122,9 @@ The local implementation has been checked against the real WordPress and Event M
 - The frontend editing notice being retained for password-protected events and removed otherwise, without removing unrelated notices.
 
 Local integration scripts and backups are development artifacts outside this plugin directory; they are not a bundled automated test suite.
+
+## Translations
+
+User-facing strings use English source text and the `eslov-event-review` text domain. Swedish (`sv_SE`) translations are bundled in `languages/` as editable `.po` and compiled `.mo` files. WordPress selects the translation using the current site or user language. The `.pot` file is the template for additional languages.
+
+Regenerate the template with `wp i18n make-pot . languages/eslov-event-review.pot --domain=eslov-event-review --exclude=.git` and compile Swedish with `msgfmt --check -o languages/eslov-event-review-sv_SE.mo languages/eslov-event-review-sv_SE.po`.

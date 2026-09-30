@@ -1,0 +1,110 @@
+# Copyright (C) 2026 
+# This file is distributed under the same license as the Eslöv Event Review plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Eslöv Event Review 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/eslov-event-"
+"review\n"
+"POT-Creation-Date: 2026-09-30T11:40:27+00:00\n"
+"PO-Revision-Date: 2026-09-30 13:40+0200\n"
+"Last-Translator: Eslöv Event Review contributors\n"
+"Language-Team: Swedish\n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: eslov-event-review\n"
+
+#. Plugin Name of the plugin
+#: eslov-event-review.php
+msgid "Eslöv Event Review"
+msgstr "Eslöv Event Review"
+
+#. Plugin URI of the plugin
+#: eslov-event-review.php
+msgid "https://github.com/Considbrs-Webdev/eslov-event-review"
+msgstr ""
+
+#. Description of the plugin
+#: eslov-event-review.php
+msgid "Event submission review and restrictions for organizer accounts."
+msgstr "Lokal granskning av evenemang och begränsning av formulärkonton."
+
+#: eslov-event-review.php:34
+msgid "Activate Eslöv Event Review separately on each site."
+msgstr "Aktivera Eslöv Event Review separat på varje webbplats."
+
+#: eslov-event-review.php:40
+msgid "Event review"
+msgstr "Granskning av evenemang"
+
+#: eslov-event-review.php:43
+msgid "Forms requiring review"
+msgstr "Formulär som kräver granskning"
+
+#: eslov-event-review.php:52
+msgid ""
+"Select one or more event submission forms. New events are saved as Pending "
+"Review without a password. New organizer accounts become subscribers, cannot "
+"log in, and receive no welcome emails. Other forms are unaffected. Leave "
+"empty to disable review of new submissions."
+msgstr ""
+"Välj ett eller flera formulär som skickar in evenemang. Nya evenemang sparas "
+"som Väntar på granskning utan lösenord. Nya arrangörskonton blir "
+"prenumeranter, kan inte logga in och får inga välkomstmejl. Övriga formulär "
+"påverkas inte. Lämna tomt för att stänga av granskning av nya inskick."
+
+#. translators: %d: Frontend form module ID.
+#: eslov-event-review.php:70
+msgid "(ID %d)"
+msgstr "(ID %d)"
+
+#: eslov-event-review.php:85
+msgid "Review"
+msgstr "Granskning"
+
+#: eslov-event-review.php:91
+msgid "Accept"
+msgstr "Acceptera"
+
+#: eslov-event-review.php:91
+msgid "Reject"
+msgstr "Neka"
+
+#: eslov-event-review.php:95
+msgid "Move the event to the Trash?"
+msgstr "Flytta evenemanget till papperskorgen?"
+
+#: eslov-event-review.php:99
+msgid "Review event"
+msgstr "Granska"
+
+#: eslov-event-review.php:119
+msgid "The Event Manager organizer handler is unavailable."
+msgstr "Event Managers arrangörshanterare saknas."
+
+#: eslov-event-review.php:125
+msgid "The event cannot be processed."
+msgstr "Evenemanget kan inte behandlas."
+
+#: eslov-event-review.php:135
+msgid "The organizer details could not be processed."
+msgstr "Arrangörsuppgifterna kunde inte behandlas."
+
+#: eslov-event-review.php:139
+msgid "The organizer could not be created. Check the organizer details."
+msgstr "Arrangören kunde inte skapas. Kontrollera arrangörsuppgifterna."
+
+#: eslov-event-review.php:145
+msgid "This action is not allowed."
+msgstr "Åtgärden är inte tillåten."
+
+#: eslov-event-review.php:151
+msgid "The event could not be processed."
+msgstr "Evenemanget kunde inte behandlas."
+
+#: eslov-event-review.php:178
+msgid "This form account cannot be used to log in."
+msgstr "Detta formulärkonto kan inte användas för inloggning."

@@ -1,0 +1,99 @@
+# Copyright (C) 2026 
+# This file is distributed under the MIT.
+msgid ""
+msgstr ""
+"Project-Id-Version: Eslöv Event Review 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/eslov-event-review\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-09-30T11:40:27+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: eslov-event-review\n"
+
+#. Plugin Name of the plugin
+#: eslov-event-review.php
+msgid "Eslöv Event Review"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: eslov-event-review.php
+msgid "https://github.com/Considbrs-Webdev/eslov-event-review"
+msgstr ""
+
+#. Description of the plugin
+#: eslov-event-review.php
+msgid "Event submission review and restrictions for organizer accounts."
+msgstr ""
+
+#: eslov-event-review.php:34
+msgid "Activate Eslöv Event Review separately on each site."
+msgstr ""
+
+#: eslov-event-review.php:40
+msgid "Event review"
+msgstr ""
+
+#: eslov-event-review.php:43
+msgid "Forms requiring review"
+msgstr ""
+
+#: eslov-event-review.php:52
+msgid "Select one or more event submission forms. New events are saved as Pending Review without a password. New organizer accounts become subscribers, cannot log in, and receive no welcome emails. Other forms are unaffected. Leave empty to disable review of new submissions."
+msgstr ""
+
+#. translators: %d: Frontend form module ID.
+#: eslov-event-review.php:70
+msgid "(ID %d)"
+msgstr ""
+
+#: eslov-event-review.php:85
+msgid "Review"
+msgstr ""
+
+#: eslov-event-review.php:91
+msgid "Accept"
+msgstr ""
+
+#: eslov-event-review.php:91
+msgid "Reject"
+msgstr ""
+
+#: eslov-event-review.php:95
+msgid "Move the event to the Trash?"
+msgstr ""
+
+#: eslov-event-review.php:99
+msgid "Review event"
+msgstr ""
+
+#: eslov-event-review.php:119
+msgid "The Event Manager organizer handler is unavailable."
+msgstr ""
+
+#: eslov-event-review.php:125
+msgid "The event cannot be processed."
+msgstr ""
+
+#: eslov-event-review.php:135
+msgid "The organizer details could not be processed."
+msgstr ""
+
+#: eslov-event-review.php:139
+msgid "The organizer could not be created. Check the organizer details."
+msgstr ""
+
+#: eslov-event-review.php:145
+msgid "This action is not allowed."
+msgstr ""
+
+#: eslov-event-review.php:151
+msgid "The event could not be processed."
+msgstr ""
+
+#: eslov-event-review.php:178
+msgid "This form account cannot be used to log in."
+msgstr ""
