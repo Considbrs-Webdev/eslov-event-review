@@ -104,6 +104,39 @@ add_action('admin_enqueue_scripts', function ($hook) {
     wp_add_inline_style('common', '.column-eslov_review{width:16em}.eslov-event-review-actions{display:flex;gap:4px;flex-wrap:wrap}');
 });
 
+/**
+ * Order the default event admin list by publication date, newest first.
+ *
+ * The event type is hierarchical, so wp_edit_posts_query() orders a list
+ * with no orderby by menu order and title. `date` is the orderby alias for
+ * post_date, the same field as the core Date column. Requests that already
+ * include an orderby argument are left unchanged.
+ *
+ * @link https://developer.wordpress.org/reference/functions/wp_edit_posts_query/
+ * @link https://developer.wordpress.org/reference/hooks/pre_get_posts/
+ * @link https://developer.wordpress.org/reference/classes/wp_query/#order-orderby-parameters
+ *
+ * @param \WP_Query $query Query for the current request.
+ */
+function orderAdminEventListByDate(\WP_Query $query): void {
+    if (!is_admin() || !$query->is_main_query()) {
+        return;
+    }
+
+    global $pagenow;
+    if ($pagenow !== 'edit.php' || $query->get('post_type') !== 'event') {
+        return;
+    }
+
+    if (isset($_GET['orderby'])) {
+        return;
+    }
+
+    $query->set('orderby', 'date');
+    $query->set('order', 'DESC');
+}
+add_action('pre_get_posts', __NAMESPACE__ . '\\orderAdminEventListByDate');
+
 /** Resolve only Event Manager's organizer handler, not every ACF save callback. */
 function organizerHandler(int $id) {
     if (!function_exists('get_field') || !get_field('submitNewOrganization', $id)) { return null; }
